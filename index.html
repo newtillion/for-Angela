@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Angela 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="hearts" aria-hidden="true"></div>
+
+<main>
+  <header class="hero">
+    <h1>Hi Angela 💕</h1>
+    <p>I made something small, just for you. Grab a cozy spot and answer a few things for me?</p>
+  </header>
+
+  <section class="card" id="questions">
+    <h2>A few little questions</h2>
+    <label>What's your favourite colour? 🎨
+      <input type="text" id="q-color" placeholder="Tell me…">
+    </label>
+    <label>What's your favourite snack? 🍫
+      <input type="text" id="q-snack" placeholder="Tell me…">
+    </label>
+    <label>What's your favourite thing to do? 🌸
+      <input type="text" id="q-thing" placeholder="Tell me…">
+    </label>
+    <label>What do you like about me? 🥰
+      <textarea id="q-like" rows="3" placeholder="Be honest, I'm blushing already…"></textarea>
+    </label>
+  </section>
+
+  <section class="surprise">
+    <p class="lead">I have one more thing for you…</p>
+    <button id="envelope" class="envelope" aria-expanded="false" aria-controls="letter">
+      <span class="env-body"></span>
+      <span class="env-flap"></span>
+      <span class="seal">💗</span>
+      <span class="env-hint">tap to open</span>
+    </button>
+  </section>
+
+  <section class="letter" id="letter" hidden>
+    <h2>My dear Angela,</h2>
+    <p>Thank you for choosing me. Out of everyone in the whole world, you chose me, and I never want to forget how lucky that makes me.</p>
+    <p>Thank you for your smile that fixes my worst days, for your laugh that I could listen to forever, and for being patient with me when I'm not at my best.</p>
+    <p>You make ordinary moments feel like my favourite ones. With you, home isn't a place, it's a feeling.</p>
+    <p>You are beautiful, kind, and strong, and I'm so proud to call you mine. I promise to keep choosing you, every single day.</p>
+    <p>I love you more than words can hold. 💗</p>
+
+    <div class="wish">
+      <h3>Now it's your turn 🌷</h3>
+      <p>Tell me something you've always wanted but were too scared to say or ask. I promise I'll never laugh, and I'll always listen.</p>
+      <textarea id="q-wish" rows="4" placeholder="Whisper it here…"></textarea>
+      <button id="send" class="btn">Send my answers to Sebit 💌</button>
+      <p id="status" role="status"></p>
+    </div>
+
+    <p class="from">Forever yours,<br><span>Sebit</span> 💖</p>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
