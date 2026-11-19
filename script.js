@@ -26,26 +26,40 @@ envelope.addEventListener("click", () => {
   }, 600);
 });
 
-// Send answers to Sebit (share sheet, or copy as a fallback)
+// Send answers to Sebit by email (via Formspree)
+// Paste your Formspree form link between the quotes, e.g. "https://formspree.io/f/abcdwxyz"
+const FORM_URL = "https://formspree.io/f/meagkwok";
+
 const val = (id) => document.getElementById(id).value.trim() || "(skipped)";
-document.getElementById("send").addEventListener("click", async () => {
-  const msg =
-    "💌 Angela's answers\n\n" +
-    "Favourite colour: " + val("q-color") + "\n" +
-    "Favourite snack: " + val("q-snack") + "\n" +
-    "Favourite thing to do: " + val("q-thing") + "\n" +
-    "What I like about you: " + val("q-like") + "\n\n" +
-    "Something I've always wanted but was scared to say:\n" + val("q-wish");
-  const status = document.getElementById("status");
+const sendBtn = document.getElementById("send");
+const status = document.getElementById("status");
+
+sendBtn.addEventListener("click", async () => {
+  const answers = {
+    "Favourite colour": val("q-color"),
+    "Favourite snack": val("q-snack"),
+    "Favourite thing to do": val("q-thing"),
+    "What she likes about Sebit": val("q-like"),
+    "Something she has always wanted but was scared to say": val("q-wish"),
+  };
+
+  if (FORM_URL.includes("PASTE_YOUR")) {
+    status.textContent = "Email isn't set up yet. Add your Formspree link in script.js.";
+    return;
+  }
+
+  sendBtn.disabled = true;
+  status.textContent = "Sending…";
   try {
-    if (navigator.share) {
-      await navigator.share({ text: msg });
-      status.textContent = "Sent with love 💗";
-    } else {
-      await navigator.clipboard.writeText(msg);
-      status.textContent = "Copied! Paste it to Sebit 💗";
-    }
+    const res = await fetch(FORM_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ _subject: "💌 Angela answered your surprise!", ...answers }),
+    });
+    if (!res.ok) throw new Error("bad response");
+    status.textContent = "Sent to Sebit with love 💗";
   } catch (e) {
-    status.textContent = "No worries, you can tell Sebit in person 💗";
+    sendBtn.disabled = false;
+    status.textContent = "Oops, that didn't send. Please try again 💗";
   }
 });
